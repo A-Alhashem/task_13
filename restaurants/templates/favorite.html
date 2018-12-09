@@ -4,7 +4,7 @@
 
 {% block content %}
 <br>
-<form action="{% url 'restaurant-list' %}">
+<form action="{% url 'favorite-restaurant' %}">
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Search" aria-label="Search" name="q" value="{{request.GET.q}}">
     <div class="input-group-append">
@@ -13,7 +13,7 @@
   </div>
 </form>
 <div class="row">
-    {% for restaurant in restaurants %}
+    {% for restaurant in restaurants_likes %}
     <div class="col-md-4">
         <div class="card my-card">
           {% if restaurant.logo %}
@@ -26,42 +26,10 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item text-center">
                 <a href="{% url 'restaurant-detail' restaurant.id %}" class="btn btn-outline-dark">View</a>
-                <button class="btn btn-light"><i id="like-{{restaurant.id}}" onclick="like({{restaurant.id}})" class="fas fa-heart {% if restaurant in restaurants_likes %}text-danger{% endif %}"></i></button>
             </li>
           </ul>
         </div>
     </div>
     {% endfor %}
 </div>
-
-
-<script>
-
-  function like(id) {
-    var heart_id = "#like-"+id;
-
-    $.ajax(
-        {
-            type:'GET',
-            url: "/restaurants/"+id+"/favorite/",
-            error: function(){
-                alert('Error');
-            },
-            success: function(data){
-                console.log(data) 
-                if(data.action === "like"){
-                  $(heart_id).addClass('text-danger');
-                }
-
-                else{
-                  $(heart_id).removeClass('text-danger');
-                }
-            },
-        }
-    );
-}
-
-</script>
-
-{% endblock content %}
-
+{% endblock %}
