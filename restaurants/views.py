@@ -4,6 +4,22 @@ from .forms import RestaurantForm, ItemForm, SignupForm, SigninForm
 from django.contrib.auth import login, authenticate, logout
 from django.db.models import Q
 from django.http import JsonResponse
+import requests
+
+
+def api_test(request):
+    response = requests.get('https://api.github.com/events')
+    json_something = response.json()
+    # return JsonResponse(json_something, safe=False)
+
+    context = {
+        "json_something": json_something,
+    }
+    
+    return render(request, 'api_test.html', context)
+
+
+
 
 # This view will be used to favorite a restaurant
 def restaurant_favorite(request, restaurant_id):

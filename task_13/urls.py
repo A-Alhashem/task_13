@@ -14,13 +14,15 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from restaurants import views
 from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('accounts/', include('allauth.urls')),
     
     path('restaurants/list/',views.restaurant_list ,name='restaurant-list'),
     path('restaurants/<int:restaurant_id>/detail/',views.restaurant_detail ,name='restaurant-detail'),
@@ -39,6 +41,8 @@ urlpatterns = [
 
     path('restaurants/favorite/',views.favorite_restaurants ,name='favorite-restaurant'),
     path('restaurants/<int:restaurant_id>/favorite/',views.restaurant_favorite ,name='restaurant-favorite'),
+
+    path('api_test/',views.api_test ,name='api_test'),
 ]
 
 if settings.DEBUG:

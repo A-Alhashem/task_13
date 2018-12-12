@@ -14,6 +14,7 @@
             {% csrf_token %}
             {{form|crispy}}
             <input type="submit" value="Signin" class="btn btn-outline-primary">
+            <a href="{% url 'github_login' %}" class="btn btn-outline-dark">Sign in using Github <i class="fab fa-github-alt"></i></a>
         </form>
     </p>
   </div>
