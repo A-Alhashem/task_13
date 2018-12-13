@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Abilities{% endblock title %}
+
+{% block content %}
+
+<br>
+<div class="card">
+  <h5 class="card-header">Abilities</h5>
+  
+ 
+
+  <ul class="list-group list-group-flush">
+    {% for ability in abc.abilities %}
+      <li class="list-group-item">
+        <p><b>{{ability.ability.name}}</b></p>
+
+      </li>
+    {% endfor %}
+  </ul>
+  
+</div>
+{% endblock content %}

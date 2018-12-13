@@ -4,24 +4,27 @@
 
 {% block content %}
 
-<form action="{% url 'api_test' %}">
+<!-- <form action="{% url 'api_test' %}">
   <div class="input-group mb-3">
     <input type="text" class="form-control" placeholder="Search" aria-label="Search" name="q" value="{{request.GET.q}}">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="submit">Search</button>
     </div>
   </div>
-</form>
+</form> -->
 
-<h2>Total Results: {{mymovies.totalResults}}</h2>
 <div class="row">
-    {% for movie in mymovies.Search %}
+    {% for pokemon in poke.results %}
     <div class="col-12 col-md-3">
         <div class="card">
-          <img class="card-img-top" src="{{movie.Poster}}" alt="Card image cap">
+          <!-- <img class="card-img-top" src="{{movie.Poster}}" alt="Card image cap"> -->
             <div class="card-body">
-              <h5 class="card-title text-center">{{movie.Title}}</h5>
-              <p class="card-text">Year: {{movie.Year}}</p>
+              <h5 class="card-title text-center">{{pokemon.name}}</h5>
+              <p class="card-text">Abilities: N/A</p>
+              <form action="{% url 'something' %}">
+                <input type="hidden" name="url" value="{{pokemon.url}}">
+                <input type="submit" value="Detail" class="btn btn-success">
+              </form>
             </div>
         </div>
     </div>

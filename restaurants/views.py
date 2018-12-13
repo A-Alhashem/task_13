@@ -7,16 +7,64 @@ from django.http import JsonResponse
 import requests
 
 
+
+
+def poke_api(request):
+    response = requests.get("https://pokeapi.co/api/v2/pokemon/")
+    poke = response.json()
+
+    context = {
+        "poke": poke,
+    }
+
+    return render(request, 'poke_api.html', context)
+
+
+
+
+def something(request):
+    url = request.GET.get('url')
+    response = requests.get(url)
+    abc = response.json()
+
+    context = {
+        "abc": abc,
+    }
+    # return JsonResponse(response.json(), safe=False)
+    return render(request, 'something.html', context)
+
+
+
+
 def api_test(request):
-    response = requests.get('https://api.github.com/events')
-    json_something = response.json()
+    api_key = '56ae4fb5'
+    search = request.GET.get('q')
+    response = requests.get('http://www.omdbapi.com/?apikey=%s&s=%s' % (api_key, search))
+    mymovies = response.json()
     # return JsonResponse(json_something, safe=False)
 
     context = {
-        "json_something": json_something,
+        "mymovies": mymovies,
     }
     
     return render(request, 'api_test.html', context)
+
+
+
+
+
+
+
+# def api_test(request):
+#     response = requests.get('https://api.github.com/events')
+#     json_something = response.json()
+#     # return JsonResponse(json_something, safe=False)
+
+#     context = {
+#         "json_something": json_something,
+#     }
+    
+#     return render(request, 'api_test.html', context)
 
 
 

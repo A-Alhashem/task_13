@@ -43,6 +43,9 @@ urlpatterns = [
     path('restaurants/<int:restaurant_id>/favorite/',views.restaurant_favorite ,name='restaurant-favorite'),
 
     path('api_test/',views.api_test ,name='api_test'),
+
+    path('poke_api/',views.poke_api ,name='poke_api'),
+    path('something/',views.something ,name='something'),
 ]
 
 if settings.DEBUG:
